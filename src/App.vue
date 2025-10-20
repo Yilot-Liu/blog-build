@@ -1,67 +1,106 @@
 
 <template>
- <div>
-  <h1>注册</h1>
- <input v-model="username" type="text" placeholder="用户名" />
- <br />
- <input v-model="password" id="first-password" type="password" placeholder="密码" />
-  <br />
-  <input v-model="confirmPassword" id="second-password" type="password" placeholder="确认密码" />
-  <br />
-  <p>密码复杂度{{ complexity }}</p>
-  <div class="strength-bar">
-    <div class="strength-fill" :class="complexity"></div>
+  <div class="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-orange-50 flex items-center justify-center p-6">
+    <div class="container mx-auto p-12 bg-blue-100  shadow-lg rounded-2xl items-center border-2">
+        <h1 class="text-3xl text-blue">用户注册</h1>
+        <div class="space-y-4">
+            <input class="w-full px-4 py-3  border-black-200 rounded-lg"  v-model="username" type="text" placeholder="用户名" />
+            <input class="w-full px-4 py-3  border-black-200 rounded-lg"  v-model="email" type="text" placeholder="邮箱地址" />
+            <input class="w-full px-4 py-3  border-black-200 rounded-lg"  v-model="password" id="first-password" type="password" placeholder="密码" />
+            <input class="w-full px-4 py-3  border-black-200 rounded-lg"  v-model="confirmPassword" id="second-password" type="password" placeholder="确认密码" />
+        </div>
+        
+        <p>密码复杂度:{{ complexityText }}</p>
+        <div class="strength-bar">
+        <div class="strength-fill" :class="complexity"></div>
+        </div>
+        <button @click="register" class="bg-pink-200 " >注册</button>
+        <p>已有账号？<button @click="">立即登录</button></p>
+    </div>
+    <br />
+    <div class="text-center border-2 block">
+      <p>建站开始时间：{{ siteinfo.days}}</p>
+      <p>访问次数:{{ siteinfo.visits }}</p>
+    </div>
   </div>
-  <button @click="register">注册</button>
-  <p>已有账号？<a href="#">立即登录</a></p></div>
+    
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
+const siteinfo = ref({})
 const username = ref('')
 const password = ref('')
 const confirmPassword = ref('')
+const email = ref('')
 
 // 密码复杂度判断（非常简单的例子）
 const complexity = computed(() => {
+  if (password.value === '') return 'null'
   if (password.value.length < 6) return 'too-short'
   if (/^[a-zA-Z]+$/.test(password.value)) return 'weak'
   if (/[A-Z]/.test(password.value) && /\d/.test(password.value)) return 'strong'
   return 'medium'
 })
+const complexityText = computed(() => {
+  switch (complexity.value) {
+    case 'too-short': return '短'
+    case 'weak': return '弱'
+    case 'medium': return '中'
+    case 'strong': return '强'
+  }
+})
+
+onMounted(async () => {
+  // 获取建站信息
+  const res = await fetch('http://localhost:3000/api/site-info')
+  siteinfo.value = await res.json()
+})
 
 // 注册按钮点击事件
 function register() {
+  if(password.value.length < 6){
+    alert('密码长度至少6位！')
+    return
+  }
+
   if (password.value !== confirmPassword.value) {
     alert('两次密码不一致！')
     return
   }
+
   alert(`注册成功，欢迎 ${username.value}！`)
 }
 </script>
 
 <style scoped>
+
+
 .strength-bar{
   width: 200px;
   height: 10px;
   background: #eee;
   border-radius: 5px;
-  transition: width 0.5s;
+  overflow: hidden;
 }
-.strength-fill.too-short{
+.strength-fill{
+  height: 100%;
+  transition: all 1s ease;
+}
+.too-short{
   width: 20%;
   background: red;
 }
-.strength-fill.weak{
+.weak{
   width: 40%;
   background: orange;
 }
-.strength-fill.medium{
+.medium{
   width: 70%;
   background: yellowgreen;
 }
-.strength-fill.strong{
+.strong{
   width: 100%;
   background: green;
 }
