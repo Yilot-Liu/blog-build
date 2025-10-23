@@ -1,33 +1,44 @@
 
 <template>
-  <div class="min-h-screen  flex items-center justify-center p-6">
-    <div class="container mx-auto w-96 h-auto p-12 bg-white-500  shadow-2xl rounded-2xl items-center border-2 ">
-        <h1 class="text-3xl ">用户注册</h1>
+  <div class="min-h-screen  flex items-center justify-center p-6 bg-blue-100">
+        <img src="/public/picture/bg.png" alt="背景展示图" class="fixed inset-0 w-full h-full object-cover z-0 opacity-40" />
+    <div class="flex w-[880px] h-120px shadow-2xl rounded-2xl overflow-hidden z-10">
+      <div class="  w-1/2  bg-white opacity-50 p-8">
+
+        <h1 class="text-3xl mb-4  text-center">注册</h1>
         <div class="space-y-4">
             <input class="w-full px-4 py-3  border-black-200 rounded-lg"  v-model="username" type="text" placeholder="用户名" />
             <input class="w-full px-4 py-3  border-black-200 rounded-lg"  v-model="email" type="text" placeholder="邮箱地址" />
             <input class="w-full px-4 py-3  border-black-200 rounded-lg"  v-model="password" id="first-password" type="password" placeholder="密码" />
             <input class="w-full px-4 py-3  border-black-200 rounded-lg"  v-model="confirmPassword" id="second-password" type="password" placeholder="确认密码" />
+        </div class=" mb-4">
+          <div class="flex">
+            <p>密码复杂度:{{ complexityText }}</p>
+            <div class="ml-1 m-2">
+              <div class="strength-bar">
+              <div class="strength-fill" :class="complexity">
+                  </div>
+              </div>
+          </div>
         </div>
         
-        <p>密码复杂度:{{ complexityText }}</p>
-        <div class="strength-bar">
-        <div class="strength-fill" :class="complexity"></div>
-        </div>
-        <button @click="register" class="bg-blue-600 text-center mx-auto block h-9 w-20 rounded-2xl " >注册</button>
+        <button @click="register" class="bg-green-600 hover:bg-green-600/60  ml-16  h-9 w-20 rounded-2xl " >注册</button>
         <p>已有账号？
-            <button @click="goToLogin">立即登录</button>
+            <button @click="goToLogin" class="bg-blue-600 h-8 w-20 rounded-xl">立即登录</button>
         或
             <button @click="goToHome">返回首页</button>
         </p>
+      </div>
+      <div class="w-1/2 bg-black opacity-50">
+        <img src="/picture/1.png" alt="展示图片" class="w-1/4 h-1/4 object-cover ml-40 m-40" />
+
+      </div>
     </div>
+
   </div>
   
   <!-- 底部介绍 -->
-  <div class=" text-center border-2 border-gray-600 w-full  rounded-2xl ">
-      <p>建站开始时间：{{ siteinfo.days}}</p>
-      <p>访问次数:{{ siteinfo.visits }}</p>
-    </div>
+  
     
 </template>
 
