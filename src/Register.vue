@@ -3,6 +3,8 @@
   <div class="min-h-screen  flex items-center justify-center p-6 bg-blue-100">
         <img src="/public/picture/bg.png" alt="背景展示图" class="fixed inset-0 w-full h-full object-cover z-0 opacity-40" />
     <div class="flex w-[880px] h-[520px] shadow-2xl rounded-2xl overflow-hidden z-10">
+      
+      <!-- 左侧注册框 -->
       <div class="  w-1/2  bg-white/50  p-8 backdrop-blur-md">
 
         <h1 class="text-3xl mb-4  text-center">注册</h1>
@@ -32,6 +34,10 @@
           </div>
           
       </div>
+
+
+
+      <!-- 右侧图片展示 -->
       <div class="w-1/2 bg-black/50 ">
         <img src="/picture/1.png" alt="展示图片" class="w-1/4 h-1/4 object-cover ml-40 m-40" />
 
@@ -40,7 +46,7 @@
 
   </div>
   
-  <!-- 底部介绍 -->
+  
   
     
 </template>

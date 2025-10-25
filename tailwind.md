@@ -29,3 +29,7 @@ tailwind的用法是在html标签中使用class格式直接定义相应的格式
 - flex：设置元素为弹性盒子布局
 - items-{alignment}：设置弹性盒子内项目的对齐方式，如items-center , items-start , items-end等
 - justify-{alignment}：设置弹性盒子内项目的主轴对齐方式，如justify-center , justify-start , justify-end等
+
+### 4.位置调整
+- ml-{size}：设置元素的左外边距，如ml-4,ml-6等
+例子：设置为ml-auto的话会自动跑到最右边

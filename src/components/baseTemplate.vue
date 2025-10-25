@@ -8,9 +8,8 @@
           <!-- 导航栏 -->
           <div @click="goTohome"
                 class="inline cursor-pointer  hover:underline">首页</div>
-          <router-link to="/link">
-            友情链接
-          </router-link>
+          <div @click="goTolink"
+                class="inline cursor-pointer hover:underline">友情链接</div>
           <div @click=""
                 class="inline cursor-pointer hover:underline">关于</div>
           <div @click=""
@@ -60,36 +59,11 @@
           <div class=" flex flex-col items-center  w-64 h-60 bg-white/50 backdrop-blur-md rounded-4xl mt-4 ">
             <p class="border-l-4 border-red-500 pl-2  font-bold text-xl mt-3 ">公告</p>
           </div>
-          <router-link to="/link"> tiaozhuan</router-link>
         
         </div>
       </div>
       
 </template>
-
-<script setup>
-import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
-const siteinfo = ref({})
-
-onMounted(async () => {
-  // 获取建站信息
-  const res = await fetch('http://localhost:3000/api/site-info')
-  siteinfo.value = await res.json()
-})
-
-function goTolink(){
-  router.push('/link')
-}
-
-
-
-
-
-function goToRegister() {
-  router.push('/register')
-}
-
+<script >
 </script>
+
