@@ -19,7 +19,8 @@
           <!-- 输入框 -->
             <input
               type="text"
-              placeholder="搜索"
+              @click="changePlaceholder"
+              :placeholder="web.text"
               class="w-full pl-4 pr-10 h-10 rounded-2xl bg-gray-400/50 text-white placeholder-white focus:outline-none"
             />
 
@@ -40,7 +41,11 @@
         去注册
         </div>
       </div>
-      <!-- 个人简介 -->
+
+      <!-- 主体部分 -->
+      <div class="flex w-full justify-center gap-28">
+        <div class="flex flex-col">
+          <!-- 个人简介 -->
           <div class=" flex flex-col items-center  w-64 h-108 bg-white/50 backdrop-blur-md rounded-4xl mt-4 ">
             <img src="/public/picture/1.png" alt="用户头像" class="w-50 rounded-full mt-3"></img>
             <h1 class="font-bold text-2xl underline decoration-red-500">ilott</h1>
@@ -60,8 +65,18 @@
           <div class=" flex flex-col items-center  w-64 h-60 bg-white/50 backdrop-blur-md rounded-4xl mt-4 ">
             <p class="border-l-4 border-red-500 pl-2  font-bold text-xl mt-3 ">公告</p>
           </div>
-          <router-link to="/link"> tiaozhuan</router-link>
+        </div>
         
+          <!-- 右侧文档展示部分 -->
+           <div class="flex flex-col items-center w-[1080px] h-60 bg-white/50 backdrop-blur-md rounded-4xl mt-4 ">
+              <div v-html="htmlContent" class="prose prose-invert p-5  w-full line-clamp-7"></div>
+              <a href="" class="text-blue-500 ">查看全文</a>
+            </div>
+            
+
+      </div>
+
+      
         </div>
       </div>
       
@@ -70,9 +85,15 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import MarkdownIt from 'markdown-it'
 
 const router = useRouter()
 const siteinfo = ref({})
+const htmlContent = ref('')
+const md = new MarkdownIt()
+const web = ref({
+  text: '搜索你感兴趣的内容吧...'
+})
 
 onMounted(async () => {
   // 获取建站信息
@@ -80,11 +101,15 @@ onMounted(async () => {
   siteinfo.value = await res.json()
 })
 
-function goTolink(){
-  router.push('/link')
+onMounted(async () => {
+  const res = await fetch('/md/test.md')
+  const text = await res.text()
+  htmlContent.value = md.render(text)
+})
+
+function changePlaceholder() {
+  web.value.text = '正在输入...'
 }
-
-
 
 
 
@@ -92,4 +117,12 @@ function goToRegister() {
   router.push('/register')
 }
 
+
+
+
 </script>
+<style>
+  .prose {
+    max-width: 100%;
+  }
+</style>
