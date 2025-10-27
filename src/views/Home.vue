@@ -1,38 +1,42 @@
 <template>
-    <div class="min-h-screen flex flex-col bg-gray-100 ">
+    <div class="min-h-screen flex flex-col bg-gray-100  ">
       <img src="/public/picture/2.png" alt="首页背景 "class="fixed inset-0 w-full h-full object-cover z-0 opacity-40" />
       <div class="z-10">
         <div class="  h-20 w-full  bg-white/50  shadow-xl rounded-3xl flex items-center px-14 space-x-10">
         <div class="w-16"><img src="/public/picture/1.png" alt="网站首页图片"></div>
           
           <!-- 导航栏 -->
-          <div @click="goTohome"
-                class="inline cursor-pointer  hover:underline">首页</div>
+         <router-link to="/">
+           首页
+         </router-link>
           <router-link to="/link">
             友情链接
           </router-link>
-          <div @click=""
-                class="inline cursor-pointer hover:underline">关于</div>
-          <div @click=""
-                class="inline cursor-pointer hover:underline">统计</div>
-          <div class="relative ml-4 w-64">
-          <!-- 输入框 -->
-            <input
-              type="text"
-              @click="changePlaceholder"
-              :placeholder="web.text"
-              class="w-full pl-4 pr-10 h-10 rounded-2xl bg-gray-400/50 text-white placeholder-white focus:outline-none"
-            />
+          <router-link to="/about">
+            关于
+          </router-link>
+          <router-link to="/statistics">
+            统计
+          </router-link>
+          
+              <div class="relative ml-4 w-64">
+              <!-- 输入框 -->
+                <input
+                  type="text"
+                  @click="changePlaceholder"
+                  :placeholder="web.text"
+                  class="w-full pl-4 pr-10 h-10 rounded-2xl bg-gray-400/50 text-white placeholder-white focus:outline-none"
+                />
 
-          <!-- 魔法棒图标 -->
-            <button class="cursor-pointer">
-              <img
-              src="/src/assets/picture/search.png"
-              alt="搜索栏图片"
-              class="w-5 h-5 absolute right-3 top-1/2 -translate-y-1/2"
-            />
-            </button>
-        </div>
+              <!-- 魔法棒图标 -->
+                <button class="cursor-pointer">
+                  <img
+                  src="/src/assets/picture/search.png"
+                  alt="搜索栏图片"
+                  class="w-5 h-5 absolute right-3 top-1/2 -translate-y-1/2"
+                />
+                </button>
+            </div>
               
 
         <div @click="goToRegister"
@@ -59,6 +63,9 @@
               </a>
             <a href="https://space.bilibili.com/397409402">
               <img src="/src/assets/picture/bilibili.png" alt="bilibili" class="w-8 h-8 absolute cursor-pointer left-39">
+            </a>
+            <a href="https://www.nowcoder.com/users/566899302">
+              <img src="/src/assets/picture/newcoder.png" alt="nowcoder" class="w-8 h-8 absolute cursor-pointer left-20 bottom-20 ">
             </a>
           </div>
           <!-- 公告 -->
@@ -91,15 +98,16 @@ const router = useRouter()
 const siteinfo = ref({})
 const htmlContent = ref('')
 const md = new MarkdownIt()
+const isDarkMode = ref(false)
 const web = ref({
   text: '搜索你感兴趣的内容吧...'
 })
 
-onMounted(async () => {
-  // 获取建站信息
-  const res = await fetch('http://localhost:3000/api/site-info')
-  siteinfo.value = await res.json()
-})
+
+
+
+
+
 
 onMounted(async () => {
   const res = await fetch('/md/test.md')
@@ -111,6 +119,21 @@ function changePlaceholder() {
   web.value.text = '正在输入...'
 }
 
+function toggleDarkMode() {
+  isDarkMode.value = !isDarkMode.value
+
+  document.documentElement.classList.toggle('dark', isDarkMode.value)
+
+  localStorage.setItem('darkMode', isDarkMode.value.toString())
+}
+
+onMounted(()=>{
+  const savedDarkMode = localStorage.getItem('darkMode')
+  if(savedDarkMode == 'true'){
+    isDarkMode.value = true
+    document.documentElement.classList.add('dark')
+  }
+})
 
 
 function goToRegister() {
@@ -121,8 +144,5 @@ function goToRegister() {
 
 
 </script>
-<style>
-  .prose {
-    max-width: 100%;
-  }
-</style>
+
+

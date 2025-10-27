@@ -1,8 +1,10 @@
 // router/index.js
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../Home.vue'
+import Home from '../views/Home.vue'
 import Register from '../Register.vue'
-import Link from '../link.vue'
+import Link from '../views/Link.vue'
+import About from '../views/About.vue'
+import Statistics from '../views/Statistics.vue'
 
 const routes = [
   {
@@ -19,7 +21,18 @@ const routes = [
     path: '/link',
     name: 'Link',
     component: Link
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About
+  },
+  {
+    path: '/statistics',
+    name: 'Statistics',
+    component: Statistics
   }
+
 ]
 
 const router = createRouter({
