@@ -29,7 +29,7 @@
             <p>已有账号？
                 <button @click="goToLogin" class="bg-blue-600 h-8 w-20 rounded-xl">立即登录</button>
             或
-                <button @click="goToHome">返回首页</button>
+                <router-link to="/">去首页</router-link>
             </p>
           </div>
           

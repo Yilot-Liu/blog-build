@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   darkMode: 'class',
   content: [
     "./index.html",
@@ -9,6 +9,9 @@ module.exports = {
     extend: {
       backgroundImage: {
         'bilibili-gradient': 'linear-gradient(135deg, #FB7299 0%, #FF9DB5 50%, #FE2C55 100%)',
+      },
+      borderRadius:{
+        '4xl':'2rem',
       }
     },
   },

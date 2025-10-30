@@ -8,15 +8,18 @@
                     <h2 class="text-2xl font-bold mb-4 border-l-4 border-blue-500 pl-2">前端技术</h2>
                     <div class="grid grid-cols-3 gap-6">
                         <!-- 前端卡片 -->
-                        <div class="bg-white rounded-xl p-4 shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105 hover:bg-blue-50">
-                            <div class="flex items-center mb-3">
-                                <img src="/src/assets/picture/HTML.png" alt="HTML" class="w-12 h-12 mr-3">
-                                <h3 class="text-xl font-bold">HTML5</h3>
-                            </div>
-                            <p>学习时间 <span></span></p>
-                        </div>
-                        
-                        
+                        <skillcard
+                            icon="/src/assets/picture/HTML.png"
+                            title="HTML5"
+                            description="学习时间"
+                            extra=""
+                        />
+                        <skillcard
+                            icon="/src/assets/picture/css.png"
+                            title="CSS"
+                            description="学习时间"
+                            extra=""
+                        />
                         <div class="bg-white rounded-xl p-4 shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105 hover:bg-blue-50">
                             <div class="flex items-center mb-3">
                                 <img src="/src/assets/picture/css.png" alt="CSS" class="w-12 h-12 mr-3">
@@ -86,4 +89,5 @@
 
 <script setup>
 import BaseTemplate from '../components/baseTemplate.vue'
+import skillcard from '../components/skillcard.vue';
 </script>
