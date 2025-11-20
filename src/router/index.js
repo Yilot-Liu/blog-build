@@ -6,6 +6,7 @@ import Link from '../views/link.vue'
 import About from '../views/about.vue'
 import Statistics from '../views/Statistics.vue'
 import Test from '../views/test.vue'
+import Post from '../views/Post.vue'
 
 const routes = [
   {
@@ -37,6 +38,12 @@ const routes = [
     path:'/test',
     name:'test',
     component: Test
+  }
+  ,
+  {
+    path: '/post/:slug',
+    name: 'Post',
+    component: Post
   }
 
 ]

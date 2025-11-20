@@ -1,9 +1,9 @@
 <template>
     <div class="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-800 transition-colors duration-300">
-      <img src="/public/picture/2.png" alt="首页背景" class="fixed inset-0 w-full h-full object-cover z-0 opacity-40 dark:opacity-20" />
+      <img src="/picture/2.png" alt="首页背景" class="fixed inset-0 w-full h-full object-cover z-0 opacity-40 dark:opacity-20" />
       <div class="z-10">
         <div class="h-20 w-full bg-white/50 dark:bg-gray-900/50 shadow-xl rounded-3xl flex items-center px-14 space-x-10">
-        <div class="w-16"><img src="/public/picture/1.png" alt="网站首页图片"></div>
+        <div class="w-16"><img src="/picture/1.png" alt="网站首页图片"></div>
           
           <!-- 导航栏 -->
          <router-link to="/" class="text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
@@ -61,24 +61,24 @@
 
         <!-- 主体部分 -->
         <div class="flex w-full justify-center gap-28">
-          <div class="flex flex-col">
-            <!-- 个人简介 -->
-            <div class="flex flex-col items-center w-64 h-[400px] bg-white/50 backdrop-blur-md rounded-3xl mt-4">
-              <img src="/public/picture/1.png" alt="用户头像" class="w-25 rounded-full mt-3">
-              <h1 class="font-bold text-2xl underline decoration-red-500">ilott</h1>
+        <div class="flex flex-col">
+          <!-- 个人简介 -->
+          <div class="flex flex-col items-center w-64 h-[400px] bg-white/50 backdrop-blur-md rounded-3xl mt-4">
+            <img src="/picture/1.png" alt="用户头像" class="w-25 rounded-full mt-3">
+            <h1 class="font-bold text-2xl underline decoration-red-500">ilott</h1>
               <h1>Talk is cheap,show me the code</h1>
               <h2>一名普通的大二计科学生</h2>
               <div class="flex justify-center space-x-6 mt-4">
-                <a href="https://github.com/Yilot-Liu" class="hover:scale-110 transition-transform">
+                <a href="https://github.com/Yilot-Liu" class="hover:scale-110 transition-transform" title="github">
                   <img src="/src/assets/picture/github.png" alt="github" class="w-8 h-8 cursor-pointer">
                 </a>
-                <a href="/src/assets/picture/wechat_friend.jpg" class="hover:scale-110 transition-transform">
+                <a href="/src/assets/picture/wechat_friend.jpg" class="hover:scale-110 transition-transform "title="微信">
                   <img src="/src/assets/picture/wechat.png" alt="wechat" class="w-8 h-8 cursor-pointer">
                 </a>
-                <a href="https://space.bilibili.com/397409402" class="hover:scale-110 transition-transform">
+                <a href="https://space.bilibili.com/397409402" class="hover:scale-110 transition-transform"title="b站">
                   <img src="/src/assets/picture/bilibili.png" alt="bilibili" class="w-8 h-8 cursor-pointer">
                 </a>
-                <a href="https://www.nowcoder.com/users/566899302" class="hover:scale-110 transition-transform">
+                <a href="https://www.nowcoder.com/users/566899302" class="hover:scale-110 transition-transform"title="牛客网">
                   <img src="/src/assets/picture/newcoder.png" alt="nowcoder" class="w-8 h-8 cursor-pointer">
                 </a>
               </div>
@@ -102,11 +102,9 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import MarkdownIt from 'markdown-it'
+
 
 const router = useRouter()
-const htmlContent = ref('')
-const md = new MarkdownIt()
 
 const web = ref({
   text: '搜索你感兴趣的内容吧...'
@@ -141,16 +139,7 @@ function toggleDarkMode() {
   }
 }
 
-// 加载 markdown
-async function loadMarkdownContent() {
-  try {
-    const res = await fetch('/md/test.md')
-    const text = await res.text()
-    htmlContent.value = md.render(text)
-  } catch (e) {
-    console.error('加载 Markdown 失败：', e)
-  }
-}
+
 
 function changePlaceholder() {
   web.value.text = '正在输入...'
@@ -161,7 +150,7 @@ function goToRegister() {
 }
 
 onMounted(() => {
-  loadMarkdownContent()
+  // loadMarkdownContent() // 移除这个调用，因为 baseTemplate 中没有定义这个函数
   // 使用完全手动控制的版本
   manualThemeControl()
   

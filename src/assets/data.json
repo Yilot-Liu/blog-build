@@ -1,38 +1,51 @@
 [
-    {
-        "name":"Python",
-        "time":"2024-07"
-    },
-    {
-        "name":"Java",
-        "time":"2025-05"
-    },
-    {
-        "name":"MySQL",
-        "time":"2025-08"
-    },
-    {
-        "name":"Vue",
-        "time":"2025-02"
-    },
-    {
-        "name":"HTML",
-        "time":"2024-11"
-    },
-    {
-        "name":"CSS",
-        "time":"2024-11"
-    },
-    {
-        "name":"Javascript",
-        "time":"2024-12"
-    },
-    {
-        "name":"tailwind",
-        "time":"2025-09"
-    }
-
+  {
+    "icon": "/src/assets/picture/HTML.png",
+    "title": "HTML5",
+    "description": "掌握语义化标签与表单",
+    "startAt": "2023-06-15T00:00:00Z",
+    "variant": "blue"
+  },
+  {
+    "icon": "/src/assets/picture/css.png",
+    "title": "CSS3",
+    "description": "掌握 CSS3 动画、Flex 布局和响应式设计",
+    "startAt": "2023-09-01T00:00:00Z",
+    "variant": "blue"
+  },
+  {
+    "icon": "/src/assets/picture/Vue.png",
+    "title": "Vue.js",
+    "description": "熟练使用 Vue3 组合式 API 和常用生态",
+    "startAt": "2024-01-10T00:00:00Z",
+    "variant": "blue"
+  },
+  {
+    "icon": "/src/assets/picture/java.png",
+    "title": "JAVA",
+    "description": "后端开发与面向对象编程",
+    "startAt": "2022-11-01T00:00:00Z",
+    "variant": "green"
+  },
+  {
+    "icon": "/src/assets/picture/mysql.png",
+    "title": "MySQL",
+    "description": "数据库设计与性能优化",
+    "startAt": "2023-04-20T00:00:00Z",
+    "variant": "green"
+  },
+  {
+    "icon": "/src/assets/picture/python.png",
+    "title": "Python",
+    "description": "脚本与后端服务开发",
+    "startAt": "2023-08-05T00:00:00Z",
+    "variant": "green"
+  },
+  {
+    "icon": "/src/assets/picture/js.png",
+    "title": "Javascript",
+    "description": "前端逻辑与 Node.js 基础",
+    "startAt": "2022-07-12T00:00:00Z",
+    "variant": "green"
+  }
 ]
-
-
-

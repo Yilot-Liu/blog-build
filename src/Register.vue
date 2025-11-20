@@ -1,7 +1,7 @@
 
 <template>
   <div class="min-h-screen  flex items-center justify-center p-6 bg-blue-100">
-        <img src="/public/picture/bg.png" alt="背景展示图" class="fixed inset-0 w-full h-full object-cover z-0 opacity-40" />
+        <img src="/picture/bg.png" alt="背景展示图" class="fixed inset-0 w-full h-full object-cover z-0 opacity-40" />
     <div class="flex w-[880px] h-[520px] shadow-2xl rounded-2xl overflow-hidden z-10">
       
       <!-- 左侧注册框 -->
@@ -24,7 +24,7 @@
           </div>
         </div>
         
-        <button @click="register" class="bg-green-600 hover:bg-green-600/60  ml-23  h-9 w-50 rounded-2xl " >注册</button>
+        <button @click="register" class="bg-green-600 hover:bg-green-600/60  ml-23  h-90 w-50 rounded-2xl " >注册</button>
           <div>
             <p>已有账号？
                 <button @click="goToLogin" class="bg-blue-600 h-8 w-20 rounded-xl">立即登录</button>
@@ -53,7 +53,9 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const siteinfo = ref({})
 const username = ref('')
 const password = ref('')
@@ -84,7 +86,7 @@ onMounted(async () => {
 })
 
 // 注册按钮点击事件
-function register() {
+async function register() {
   if(password.value.length < 6){
     alert('密码长度至少6位！')
     return
@@ -95,7 +97,33 @@ function register() {
     return
   }
 
-  alert(`注册成功，欢迎 ${username.value}！`)
+  try {
+    // 调用 Spring Boot 后端接口
+    const response = await fetch('http://localhost:8080/api/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: username.value,
+        email: email.value,
+        password: password.value
+      })
+    })
+
+    const data = await response.json()
+
+    if (data.code === 200) {
+      alert(`注册成功，欢迎 ${username.value}！`)
+      // 注册成功后跳转到登录页
+      router.push('/login')
+    } else {
+      alert(data.message || '注册失败')
+    }
+  } catch (error) {
+    console.error('注册请求错误:', error)
+    alert('连接服务器失败，请检查后端是否启动')
+  }
 }
 
 function goToLogin() {
