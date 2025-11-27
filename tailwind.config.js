@@ -17,6 +17,6 @@ export default {
   },
   plugins: [
     require('@tailwindcss/typography'),
-    // require('@tailwindcss/line-clamp') // 已内置，无需单独引入
+    
   ],
 }

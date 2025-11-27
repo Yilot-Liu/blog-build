@@ -2,8 +2,8 @@
   <base-template>
     <template #content>
       <div class="flex flex-col items-center w-[1080px] bg-white/50 backdrop-blur-md rounded-4xl mt-4 p-6">
-        <h1 class="text-2xl font-bold mb-4">文章详情</h1>
-        <div v-html="htmlContent" class="prose prose-invert p-2 w-full"></div>
+        <h1 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">文章详情</h1>
+        <div v-html="htmlContent" class="prose dark:prose-invert p-2 w-full"></div>
       </div>
     </template>
   </base-template>

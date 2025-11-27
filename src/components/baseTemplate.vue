@@ -23,13 +23,15 @@
             <!-- 输入框 -->
             <input
               type="text"
+              v-model="searchQuery"
+              @keyup.enter="performSearch"
               @click="changePlaceholder"
               :placeholder="web.text"
               class="w-full pl-4 pr-10 h-10 rounded-2xl bg-gray-400/50 text-white placeholder-white focus:outline-none"
             />
 
             <!-- 魔法棒图标 -->
-            <button class="cursor-pointer">
+            <button class="cursor-pointer" @click="performSearch">
               <img
               src="/src/assets/picture/search.png"
               alt="搜索栏图片"
@@ -64,7 +66,7 @@
         <div class="flex flex-col">
           <!-- 个人简介 -->
           <div class="flex flex-col items-center w-64 h-[400px] bg-white/50 backdrop-blur-md rounded-3xl mt-4">
-            <img src="/picture/1.png" alt="用户头像" class="w-25 rounded-full mt-3">
+            <img src="/picture/1.png" alt="用户头像" class="w-13 rounded-full mt-3">
             <h1 class="font-bold text-2xl underline decoration-red-500">ilott</h1>
               <h1>Talk is cheap,show me the code</h1>
               <h2>一名普通的大二计科学生</h2>
@@ -105,6 +107,7 @@ import { useRouter } from 'vue-router'
 
 
 const router = useRouter()
+const searchQuery = ref('')
 
 const web = ref({
   text: '搜索你感兴趣的内容吧...'
@@ -143,6 +146,10 @@ function toggleDarkMode() {
 
 function changePlaceholder() {
   web.value.text = '正在输入...'
+}
+
+function performSearch() {
+  router.push({ path: '/', query: { q: searchQuery.value } })
 }
 
 function goToRegister() {
